@@ -1,0 +1,49 @@
+body
+{
+	background-color: grey;
+}
+
+div#header nav
+{
+	margin-top: 70px;
+}
+
+div#header nav a
+{
+	text-decoration: none;
+	font-size: 22px;
+	
+	padding: 5px;
+}
+
+div#header nav a:hover
+{
+	color: black;
+}
+
+div#header nav ul
+{
+	list-style-type: none;
+	padding: 0;
+}
+
+div#header nav ul li
+{
+	display: inline-block;
+	margin-right: 80px;
+}
+
+div.newsItem
+{
+	border: 1px solid black;
+	width: 400px;
+	overflow: hidden;
+	padding: 1em;
+	margin-bottom: 1em;
+	background-color: aqua;
+}
+
+div.newsItem div.date
+{
+	float: right;
+}
