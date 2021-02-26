@@ -132,8 +132,10 @@ class CNews
 
     public function selectAndRenderAllNewsItems()
     {   
-        $query = "SELECT * FROM news";
-        $result = $this->m_app->db()->query($query);
+        /*$query = "SELECT * FROM news";
+        $result = $this->m_app->db()->query($query);*/
+
+        $result = $this->m_app->db()->selectAll("news");
 
         if($result->num_rows > 0)
         {

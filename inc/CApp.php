@@ -1,7 +1,8 @@
 <?php
 
-
+session_start();
 require_once("CDatabase.php");
+require_once("CUser.php");
 
 function print_r_pre($data)
 {
@@ -15,6 +16,7 @@ class CApp
     public function __construct()
     {
         $this->m_db = new CDatabase();
+        $this->m_user = new CUser($this);
     }
 
     public function renderHeader(string $title)
@@ -28,35 +30,62 @@ class CApp
     
         <body>
         <div id="header">
+            <image src="images/Sjukhus.png"></image>
             <nav>
                 <ul>
-                    <li><a href="./">Startsida</a></li>
-                    <li><a href="contact.php">Kontakt</a></li>
-                    <li><a href="news.php">News</a></li>
-                    <li><a href="dbtest.php">DB test</a></li>
+                    <li><a class="active" href="./">Hem</a></li>
+                    <li><a href="news.php">Nyheter</a></li>
+                    <?php
+                        if($this->user()->isLoggedIn())    //Inloggad
+                        {
+                            echo('<li><a href="logout.php">Logout</a></li>');
+                        }
+                        else    //Inte inloggad
+                        {
+                            echo('<li><a href="login.php">Login</a></li>');
+                        }
+                    ?>
+                    <li class="dropdown">
+                        <a class="dropbutton">Om Oss</a>
+                        <div class="dropdown-content">
+                            <a href="">Öppettider</a>
+                            <a href="">Vägbeskrivning</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
-    
-        <main id="content">
-        <h1><?php echo($title)?></h1>
+        
+        
     <?php
     }
 
+
     public function renderFooter()
-{
-    echo
-    ('
-    </main>
-    </body>
-    </html>
-    ');
-}
+    {
+        ?>
+            <div id="footer"> 
+                Footer 
+            </div>
+        </body>
+        </html>
+        <?php
+    }
+
+    public function loggedInOrAbort()
+    {
+        if(!$this->user()->isLoggedIn()) 
+        {
+            die("You are not allowed to be here! Joe Mama :|");
+        }
+    }
 
 public function &db()    {return $this->m_db;}
+public function &user()    {return $this->m_user;}
 
 //////////////////////////////////////
 private $m_db = null;
+private $m_user = null;
 };
 
 $app = new CApp();

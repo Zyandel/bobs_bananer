@@ -37,6 +37,13 @@ class CDatabase
         return $result;
     }
 
+    public function selectAll(string $table)
+    {
+        $query = "SELECT * FROM " . $table;
+        $result = $this->query($query);
+        return $result;
+    }
+
 ////////////////////////////////////////////////////
 private $m_settings = [];
 private $m_connection = null;

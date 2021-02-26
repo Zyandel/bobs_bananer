@@ -9,7 +9,11 @@ require_once("inc/CApp.php");
 $app->renderHeader("Välkommen");
 ?>
 
-<p>Här sker allt som har med hinkar att göra</p>
+<div class="leftContent">left content</div>
+
+<div class="middleContent">middle content</div>  
+
+<div class="rightContent">right content</div> 
 
 <?php
 $app->renderFooter();
