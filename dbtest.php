@@ -12,42 +12,44 @@ $conn = new mysqli($server, $username, $password, $dbname);
 
 if($conn->connect_error)
 {
-    throw new Exception("Connection Failed: " . $conn->connect_error);
+	throw new Exception("Connection failed: " . $conn->connect_error);
 }
 
 
 
-$query = "SELECT * FROM news";
+$query = "SELECT * FROM news WHERE 1";
 $result = $conn->query($query);
 
 if($result === false)
 {
-    throw new Exception("Query error: " . $conn->error);
+	throw new Exception("Query error: " . $conn->error);
 }
 
 if($result->num_rows > 0)
 {
-    echo("There are more existing rows!");
-    while($row = $result->fetch_assoc())
-    {
-        echo("<pre>");
-        print_r($row);
-        echo("</pre>");
-    }
+	echo("Rader finns");
+	while($row = $result->fetch_assoc())
+	{
+		//var_dump($row);
+		echo("<pre>");
+		print_r($row);
+		echo("</pre>");
+	}
 }
 else
 {
-    echo("There are no more rows to be shown!");
+	echo("Det finns inget att visa");
 }
 
-?>
 
+?>
 
 <?php
 $app->renderHeader("DB test");
 ?>
 
-<p>Här sker allt som har med hinkar att göra</p>
+
+<p>Den här sidan handlar om allt som är roligt.</p>
 
 <?php
 $app->renderFooter();

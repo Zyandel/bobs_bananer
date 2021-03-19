@@ -6,12 +6,11 @@ $app->user()->logout();
 
 ?>
 
-
 <?php
-$app->renderHeader("Goodbye!");
+$app->renderHeader("Utloggad");
 ?>
 
-<h2>You have been banished from the mortal realm!</h2>
+<p>Du är nu utloggad.</p>
 
 <?php
 $app->renderFooter();
