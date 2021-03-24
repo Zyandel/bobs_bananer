@@ -7,10 +7,10 @@ $app->user()->logout();
 ?>
 
 <?php
-$app->renderHeader("Utloggad");
+$app->renderHeader("Logged Out!");
 ?>
 
-<p>Du är nu utloggad.</p>
+<p>You are no longer logged in!</p>
 
 <?php
 $app->renderFooter();

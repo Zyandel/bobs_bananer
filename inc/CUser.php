@@ -81,7 +81,7 @@ class CUser
 				}
 				else if(strlen($data["password"]) < 6)
 				{
-					$this->m_validationErrors[] = "Lösenordet saknas eller är för kort";
+					$this->m_validationErrors[] = "The password is missing or it is too short!";
 					return false;
 				}
 			}
@@ -91,13 +91,13 @@ class CUser
 		{
 			if(!isset($data["password2"]))
 			{
-				$this->m_validationErrors[] = "Upprepning av lösenord saknas";
+				$this->m_validationErrors[] = "Repeat of password is missing!";
 				return false;
 			}
 
 			if($data["password"] != $data["password2"])
 			{
-				$this->m_validationErrors[] = "Lösenorden är inte identiska";
+				$this->m_validationErrors[] = "The passwords are not identical!";
 				return false;
 			}
 
@@ -111,7 +111,7 @@ class CUser
 
 			if($user !== null && $user["id"] != $id) // if(is_array($user))
 			{
-				$this->m_validationErrors[] = "Användarnamnet är upptaget";
+				$this->m_validationErrors[] = "Username is already taken!";
 				return false;
 			}
 		}
@@ -121,7 +121,7 @@ class CUser
 			$user = $this->selectByEmail($data["email"]);
 			if($user !== null && $user["id"] != $id) 
 			{
-				$this->m_validationErrors[] = "E-postadressen är upptagen";
+				$this->m_validationErrors[] = "E-Mail is already taken!";
 				return false;
 			}
 		}
@@ -141,7 +141,7 @@ class CUser
 		}
 		else
 		{
-			echo("Det finns fel i inmatningen:");
+			echo("There are errors in your input: ");
 			print_r($this->m_validationErrors);
 		}
 		return 0;
@@ -167,7 +167,7 @@ class CUser
 		}
 		else
 		{
-			echo("Det finns fel i inmatningen:");
+			echo("There are errors in your input: ");
 			print_r($this->m_validationErrors);
 		}
 		
@@ -180,7 +180,7 @@ class CUser
 		$result = $this->m_app->db()->query($query);
 		if($result->num_rows == 0)
 		{
-			throw new Exception("Användaren kunde inte hittas");
+			throw new Exception("User could not be found!");
 		}
 
 		$data = $result->fetch_assoc();
@@ -200,7 +200,7 @@ class CUser
 
 		if(is_null($userData))
 		{
-			throw new Exception("Felaktig inloggning");
+			throw new Exception("Incorrect log in!");
 		}
 		else // Användare hittad!
 		{
@@ -213,7 +213,7 @@ class CUser
 			}
 			else
 			{
-				die("Felaktigt lösenord");
+				die("Incorrect password!");
 			}
 			
 		}
@@ -241,59 +241,14 @@ class CUser
 		?>
 		<form method="post" autocomplete="off">
 
-			Användarnamn: <input type="text" name="username" autocomplete="off"/> <br />
+			Username: <input type="text" name="username" autocomplete="off"/> <br />
 
-			Lösenord: <input type="password" name="password" /><br />
+			Password: <input type="password" name="password" /><br />
 
 
 			<input type="submit" value="Logga in" />
 
 		</form>
-		<?php
-	}
-
-	public function renderSymptomForm()
-	{
-		?>
-		<form id="regForm" action="/action_page.php">
-			<h1>Register:</h1>
-
-			<div class="tab">Name:
-				<p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
-				<p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
-			</div>
-
-			<div class="tab">Contact Info:
-				<p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
-				<p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
-			</div>
-
-			<div class="tab">Birthday:
-				<p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-				<p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-				<p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
-			</div>
-
-			<div class="tab">Login Info:
-				<p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-				<p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-			</div>
-
-			<div id="Sub_Button">
-				<div>
-				<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-				<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-				</div>
-			</div>
-
-			<div style="text-align:center;margin-top:40px;">
-				<span class="step"></span>
-				<span class="step"></span>
-				<span class="step"></span>
-				<span class="step"></span>
-			</div>
-		</form>
-
 		<?php
 	}
 

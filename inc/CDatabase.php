@@ -7,7 +7,7 @@ class CDatabase
 		$this->m_settings["server"] = "localhost";
 		$this->m_settings["username"] = "root";
 		$this->m_settings["password"] = "root";
-		$this->m_settings["dbname"] = "site1";
+		$this->m_settings["dbname"] = "sjukhus";
 
 		$this->m_connection = null;
 		$this->connect();

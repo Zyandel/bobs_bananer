@@ -5,11 +5,11 @@ require_once("inc/CApp.php");
 
 $app->user()->handleLoginAttempt();
 
-$app->renderHeader("Logga in");
+$app->renderHeader("Log In");
 
 ?>
 
-<p>Logga in ditt jäkla snömonster.</p>
+<p>Ey you snowmonster, log in!</p>
 
 <?php
 

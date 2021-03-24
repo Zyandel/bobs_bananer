@@ -5,11 +5,11 @@ require_once("inc/CApp.php");
 ?>
 
 <?php
-$app->renderHeader("Välkommen");
+$app->renderHeader("Welcome!");
 ?>
 
 
-<p>Den här sidan handlar om allt som är roligt.</p>
+<p>On this page everything fun happens!</p>
 
 <?php
 $app->renderFooter();

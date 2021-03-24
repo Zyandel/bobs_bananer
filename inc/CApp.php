@@ -102,23 +102,10 @@ class CApp
 
 	public function renderFooter()
 	{
-		echo('</main>
-		<div id="footer">');
-		
-		if($this->user()->isLoggedIn())
-		{
-			echo("Du är inloggad som " . $_SESSION["userData"]["username"]);
-		}
-		else
-		{
-			echo('<a href="login.php">Logga in</a>');
-		}
-		// Om man är inloggad. Berätta det.
-		// Nästa steg: Skriv ut namnet från sessionen
-
-		
-		
-		echo('</div>
+		echo('
+		</main>
+			<div id="footer">
+			</div>
 		</body>
 		</html>');
 	}

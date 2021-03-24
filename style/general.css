@@ -44,7 +44,8 @@ margin: 0;
 
 .navbar a:hover, .dropdown:hover .dropbtn 
 {
-background-color: limegreen;
+background-color: #4CAF50;
+cursor: pointer;
 }
 
 .dropdown-content 
@@ -60,7 +61,7 @@ z-index: 1;
 
 .dropdown-content .header 
 {
-background: limegreen;
+background: #4CAF50;
 padding: 16px;
 color: white;
 }
@@ -106,79 +107,82 @@ display: table;
 clear: both;
 }
 
-#regForm 
-{
-background-color: #ffffff;
-margin: 100px auto;
-font-family: Raleway;
-padding: 40px;
-width: 70%;
-min-width: 300px;
-}
-
 h1 
 {
 text-align: center;  
 }
 
-input 
+input[type=text], select 
 {
-padding: 10px;
 width: 100%;
-font-size: 17px;
-font-family: Raleway;
-border: 1px solid #aaaaaa;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
 }
 
-input.invalid 
+input[type=username], select 
 {
-background-color: #ffdddd;
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
 }
 
-.tab 
+input[type=email], select 
 {
-display: none;
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
 }
 
-button 
+input[type=tel], select 
 {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+input[type=password], select 
+{
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+input[type=submit] 
+{
+width: 100%;
 background-color: #4CAF50;
-color: #ffffff;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
 border: none;
-padding: 10px 20px;
-font-size: 17px;
-font-family: Raleway;
+border-radius: 4px;
 cursor: pointer;
 }
 
-button:hover 
+input[type=submit]:hover 
 {
-opacity: 0.8;
+background-color: #45a049;
 }
 
-#prevBtn 
-{
-background-color: #bbbbbb;
-}
 
-.step 
-{
-height: 15px;
-width: 15px;
-margin: 0 2px;
-background-color: #bbbbbb;
-border: none;  
-border-radius: 50%;
-display: inline-block;
-opacity: 0.5;
-}
 
-.step.active 
-{
-opacity: 1;
-}
-
-.step.finish 
-{
-background-color: #4CAF50;
-}
