@@ -49,22 +49,22 @@ if(!empty($_POST))
 <?php
 if($isCreating)
 {
-	$title = "Register";
+	$title = "Registrera dig";
 }
 else
 {
-	$title = "Change Information For " . $userData["username"];
+	$title = "Ändra information för " . $userData["username"];
 }
 $app->renderHeader($title);
 
 $form->open();
 
-$form->createText("username", "Username");
+$form->createText("username", "Användarnamn");
 $form->createEmail("email", "E-Mail");
-$form->createPassword("password", "Password");
-$form->createPassword("password2", "Repeat Password");
+$form->createPassword("password", "Lösenord");
+$form->createPassword("password2", "Upprepa lösenord");
 
-$form->createSubmit($isCreating ? "Register" : "Save Information");
+$form->createSubmit($isCreating ? "Registrera dig" : "Spara information");
 
 $form->close();
 ?>

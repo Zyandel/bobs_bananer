@@ -133,17 +133,6 @@ class CDatabase
 
 	public function escape(string $text)
 	{
-		/*$pos = strpos($text, '<');
-		if($pos !== false)
-		{
-			die("Pls me no hacking, me tired");
-		}
-
-		$pos = strpos($text, '>');
-		if($pos !== false)
-		{
-			die("Pls me no hacking, me tired");
-		}*/
 		$text = htmlspecialchars($text);
 
 		return $this->m_connection->real_escape_string($text);

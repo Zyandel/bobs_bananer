@@ -46,52 +46,22 @@ class CApp
 		<img id="logo" src="images/Sjukhus.png"/>
         <div id="header">
             <nav>
-                <div class="navbar">
-                    <li><a href="./">Home</a></li>
-                    <li><a href="symptomForm.php">Form</a></li>
-                    <li><a href="news.php">News</a></li>
-                    <li><a href="register.php">Register</a></li>
+                <div id="navbar">
+                    <li><a href="symptomForm.php">Sjukformulär</a></li>
                     <?php
                     if($this->user()->isLoggedIn())    //Inloggad
                     {
                         $id = $_SESSION["userData"]["id"];
-                        echo('<li><a href="register.php?id=' . $id . '">My Profile</a></li>');
-                        echo('<li><a href="logout.php">Logout</a></li>');
+                        echo('<li class="navbarRight"><a href="register.php?id=' . $id . '">Min Profil</a></li>');
+                        echo('<li class="navbarRight"><a href="logout.php">Logga ut</a></li>');
+                        echo('<li class="navbarRight"><a href="contact.php">Boka tid</a></li>');
                     }
                     else    //Inte inloggad
                     {
-                        echo('<li><a href="login.php">Login</a></li>');
+                        echo('<li class="navbarRight"><a href="login.php">Logga in</a></li>');
+                        echo('<li class="navbarRight"><a href="register.php">Registrera dig</a></li>');
                     }
                     ?>
-                    <div class="dropdown">
-                        <button class="dropbtn">More Categories
-                        <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <div class="header">
-                                <h2>Mega Menu</h2>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <h3>Category 1</h3>
-                                <a href="#">Link 1</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
-                            </div>
-                            <div class="column">
-                                <h3>Category 2</h3>
-                                <a href="#">Link 1</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
-                            </div>
-                            <div class="column">
-                                <h3>Category 3</h3>
-                                <a href="#">Link 1</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </nav>
         </div>
@@ -104,8 +74,15 @@ class CApp
 	{
 		echo('
 		</main>
-			<div id="footer">
-			</div>
+            <div id="footer">
+            
+                <div id="left">             
+                </div>
+
+                <div id="right">
+                </div>
+            </div>
+            <script src="scripts/tools.js"></script>
 		</body>
 		</html>');
 	}
