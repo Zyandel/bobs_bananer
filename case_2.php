@@ -5,7 +5,7 @@ require_once("inc/CApp.php");
 ?>
 
 <?php
-$app->renderHeader("Välkommen!");
+$app->renderHeader("Gör covid-19 test");
 ?>
 
 <?php

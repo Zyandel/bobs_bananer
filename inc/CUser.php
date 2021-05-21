@@ -25,7 +25,7 @@ class CUser
 			{
 				$data["id"] = $id;
 				$this->storeUserInSession($data);
-				redirect("contact.php");
+				redirect("booking.php");
 			}
 		}
 		return $id;
@@ -44,6 +44,20 @@ class CUser
 	private function selectBySymptom(int $S1, int $S2, int $S3)
 	{
 		$query = "SELECT * FROM infoform WHERE symptom1=$S1, symptom2=$S2, symptom3=$S3";
+		$result = $this->m_app->db()->query($query);
+		if($result->num_rows == 0)
+		{
+			throw new Exception("Kombination Ej Hittad!");
+		}
+
+		$data = $result->fetch_assoc();
+		
+		return $data;
+	}
+
+	private function selectByFullnameAndEmail(string $fName, string $lName, string $email)
+	{
+		$query = "SELECT * FROM bookingform WHERE firstName=$fName, lastName=$lName, email=$email";
 		$result = $this->m_app->db()->query($query);
 		if($result->num_rows == 0)
 		{
@@ -234,54 +248,6 @@ class CUser
 		}
 	}
 
-	public function findAndDirectByFormCombo(int $S1, int $S2, int $S3)
-	{
-		///////////////Case 1/////////////////
-		if($_POST["symptom1"] == 1 && $_POST["symptom2"] == 1 && $_POST["symptom3"] == 3)
-		{
-			redirect("logout.php");
-		}
-
-
-		///////////////Case 2/////////////////
-		if($_POST["symptom1"] == 3 && $_POST["symptom2"] == 1 && $_POST["symptom3"] == 2)
-		{
-			redirect("logout.php");
-		}
-
-
-		///////////////Case 3/////////////////
-		if($_POST["symptom1"] == 2 && $_POST["symptom2"] == 2 && $_POST["symptom3"] == 1)
-		{
-			redirect("logout.php");
-		}
-
-
-		///////////////Case 4/////////////////
-		if($_POST["symptom1"] == 3 && $_POST["symptom2"] == 3 && $_POST["symptom3"] == 1)
-		{
-			redirect("logout.php");
-		}
-		else
-		{
-			$this->validateAndInsertForm();	
-			redirect("contact.php");
-		}
-
-	}
-
-	public function handleFormDirectory()
-	{
-		if(!empty($_POST))
-		{
-			$S1 = $_POST["symptom1"];
-			$S2 = $_POST["symptom2"];
-			$S3 = $_POST["symptom3"];
-
-			$this->findAndDirectByFormCombo($S1, $S2, $S3);
-		}
-	}
-
 	public function logout()
 	{
 		unset($_SESSION["loggedIn"]);
@@ -305,7 +271,11 @@ class CUser
 		<?php
 	}
 
-	public function renderContactForm()
+
+
+
+////////////////////////////Booking Form////////////////////////////
+	public function renderBookingForm()
 	{
 		?>
 		<form method="post">
@@ -326,6 +296,79 @@ class CUser
 		<?php
 	}
 
+	private function validateBookingForm(array $data)
+	{
+		$this->m_validationErrors = [];
+
+		if(empty($data["firstName"]))
+		{
+			$this->m_validationErrors[] = "Du behöver ange ett förnamn!";
+			return false;
+		}
+
+        if(empty($data["lastName"]))
+		{
+			$this->m_validationErrors[] = "Du behöver ange ett efternamn!";
+			return false;
+		}
+
+        if(empty($data["email"]))
+		{
+			$this->m_validationErrors[] = "Du behöver ange en e-mail!";
+			return false;
+		}
+
+        if(empty($data["phoneNumber"]))
+		{
+			$this->m_validationErrors[] = "Du behöver ange ett telefon nummer!";
+			return false;
+		}
+		return true;
+	}
+
+	private function insertBookingForm(array $data)
+	{	
+		$this->m_app->db()->insert("bookingform", $data);
+
+	}
+
+	public function validateAndInsertBookingForm()
+	{
+		if(empty($_POST))
+			return;
+		
+		if($this->validateBookingForm($_POST))
+		{
+			$this->insertBookingForm($_POST);	
+		}
+		else
+		{
+			echo("Det finns fel i ditt formulär: ");
+			print_r($this->m_validationErrors);
+		}
+	}
+
+	private function findAndBookUser(string $fName, string $lName, string $email)
+	{
+		///////////////Case 4/////////////////Magsjuka kontakta 1177
+		if($_POST["firstName"] == $fName && $_POST["lastName"] == $lName && $_POST["email"] == $email && $_POST["date"] = time())
+		{
+			$this->validateAndInsertBookingForm();	
+			redirect("yourBookings.php");
+		}
+	}
+
+	public function handleBookingAttempt()
+	{
+		if(!empty($_POST))
+		{
+			$fName = $_POST["firstName"];
+			$lName = $_POST["lastName"];
+			$email = $_POST["email"];
+
+			$this->findAndBookUser($fName, $lName, $email);
+		}
+	}
 
 
 
@@ -333,7 +376,7 @@ class CUser
 	public function renderSymptomForm()
 	{
 		?>
-        <form method="post">
+        <form id="sympForm"method="post">
 
             <label for="symptom1">Symtom 1:</label>
             <select id="symptom1" name="symptom1">
@@ -369,13 +412,13 @@ class CUser
             </select></br>
 
 
-            <input type="submit" value="Skicka">
+            <input id="sendButton" type="submit" value="Skicka">
         </form>
 
 		<?php
 	}
 
-	private function validateForm(array $data)
+	private function validateInfoForm(array $data)
 	{
 		$this->m_validationErrors = [];
 
@@ -410,19 +453,67 @@ class CUser
 		$this->m_app->db()->insert("infoform", $data);
 	}
 
-	public function validateAndInsertForm()
+	public function validateAndInsertInfoForm()
 	{
 		if(empty($_POST))
 			return;
 		
-		if($this->validateForm($_POST))
+		if($this->validateInfoForm($_POST))
 		{
 			$this->insertInfoForm($_POST);	
 		}
 		else
 		{
-			echo("There are errors in your input: ");
+			echo("Det finns fel i ditt formulär: ");
 			print_r($this->m_validationErrors);
+		}
+	}
+
+	public function findAndDirectByFormCombo(int $S1, int $S2, int $S3)
+	{
+		///////////////Case 1/////////////////Förkylning kontakta 1177
+		if($_POST["symptom1"] == 1 && $_POST["symptom2"] == 1 && $_POST["symptom3"] == 3)
+		{
+			redirect("case_1.php");
+		}
+
+
+		///////////////Case 2/////////////////Gör covid-19 test
+		if($_POST["symptom1"] == 3 && $_POST["symptom2"] == 1 && $_POST["symptom3"] == 2)
+		{
+			redirect("case_2.php");
+		}
+
+
+		///////////////Case 3/////////////////Ring 112 blyat
+		if($_POST["symptom1"] == 2 && $_POST["symptom2"] == 2 && $_POST["symptom3"] == 1)
+		{
+			redirect("case_3.php");
+		}
+
+
+		///////////////Case 4/////////////////Magsjuka kontakta 1177
+		if($_POST["symptom1"] == 3 && $_POST["symptom2"] == 3 && $_POST["symptom3"] == 1)
+		{
+			redirect("case_4.php");
+		}
+		else////////////////////////Boka tid hos oss din lilla strumpätare////////////////////////
+		{
+			$this->validateAndInsertInfoForm();	
+			redirect("contact.php");
+		}
+
+	}
+
+	public function handleFormDirectory()
+	{
+		if(!empty($_POST))
+		{
+			$S1 = $_POST["symptom1"];
+			$S2 = $_POST["symptom2"];
+			$S3 = $_POST["symptom3"];
+
+			$this->findAndDirectByFormCombo($S1, $S2, $S3);
 		}
 	}
 

@@ -5,7 +5,7 @@ require_once("inc/CApp.php");
 ?>
 
 <?php
-$app->renderHeader("Välkommen!");
+$app->renderHeader("Ring 112");
 ?>
 
 <?php

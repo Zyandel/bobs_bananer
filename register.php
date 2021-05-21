@@ -1,13 +1,12 @@
 <?php
-
 require_once("inc/CApp.php");
 
 
 
 $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 $isCreating = $id == 0; // true om id är 0, false annars.
-
 $form = $app->form();
+
 if($id > 0) // Alltså redigerar en user
 {
 	$app->loggedInOrAbort();
@@ -61,8 +60,8 @@ $form->open();
 
 $form->createText("username", "Användarnamn");
 $form->createEmail("email", "E-Mail");
-$form->createPassword("password", "Lösenord");
-$form->createPassword("password2", "Upprepa lösenord");
+$form->createPassword("password", $isCreating ? "Lösenord" : "Nytt Lösenord");
+$form->createPassword("password2", $isCreating ? "Upprepa Lösenord" :"Upprepa Nytt Lösenord");
 
 $form->createSubmit($isCreating ? "Registrera dig" : "Spara information");
 

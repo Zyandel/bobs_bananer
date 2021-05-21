@@ -40,13 +40,19 @@ class CApp
 			<head>
 				<title><?php echo($title); ?></title>
 				<link rel="stylesheet" href="style/general.css" />
+				<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        		integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<script src="scripts/tools.js"></script>
 			</head>
 	<body>
-		<img id="logo" src="images/Sjukhus.png"/>
-        <div id="header">
-            <nav>
-                <div id="navbar">
+			<header>
+				<i id="showMenuIcon" class="fas fa-bars"></i>
+				<img id="logo" src="images/Sjukhus.png"/>
+    		</header>
+            <nav id="navBar">
+				<ul>
+					<i id="hideMenuIcon" class="fas fa-times"></i>
                     <li><a href="symptomForm.php">Sjukformulär</a></li>
                     <?php
                     if($this->user()->isLoggedIn())    //Inloggad
@@ -54,7 +60,8 @@ class CApp
                         $id = $_SESSION["userData"]["id"];
                         echo('<li class="navbarRight"><a href="register.php?id=' . $id . '">Min Profil</a></li>');
                         echo('<li class="navbarRight"><a href="logout.php">Logga ut</a></li>');
-                        echo('<li class="navbarRight"><a href="contact.php">Boka tid</a></li>');
+						echo('<li class="navbarRight"><a href="yourBookings.php">Dina bokningar</a></li>');
+                        echo('<li class="navbarRight"><a href="booking.php">Boka tid</a></li>');
                     }
                     else    //Inte inloggad
                     {
@@ -62,9 +69,8 @@ class CApp
                         echo('<li class="navbarRight"><a href="register.php">Registrera dig</a></li>');
                     }
                     ?>
-                </div>
+				</ul>
             </nav>
-        </div>
 			<main id="content">
 			<h1><?php echo($title); ?></h1>
 	<?php
