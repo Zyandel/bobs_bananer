@@ -65,6 +65,7 @@ class CApp
                     }
                     else    //Inte inloggad
                     {
+						echo('<li class="navbarRight"><a href="info.php">Information</a></li>')
                         echo('<li class="navbarRight"><a href="login.php">Logga in</a></li>');
                         echo('<li class="navbarRight"><a href="register.php">Registrera dig</a></li>');
                     }
