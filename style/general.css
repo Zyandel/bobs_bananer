@@ -9,17 +9,21 @@ margin: 0;
 padding: 0;
 font-family: Arial, Helvetica, sans-serif;
 height: 200vh;
+grid-template-columns: 33.3% 33.3% 33.4%;
+grid-template-rows: 14% 7% 66% 13%;
+display: grid;
 }
 
 header 
 {
-height: 175px;
+border-bottom: 10px solid #4CAF50;
 background-color: lightgray;
 display: flex;
 align-items: center;
 justify-content: flex-start;
 padding: 1rem;
 align-content: center;
+grid-column: 1 / 4;
 }
 
 header i.fas.fa-bars 
@@ -45,15 +49,17 @@ display: none;
 overflow: hidden;
 background-color: grey;
 font-family: Arial;
+grid-column: 1 / 4;
+height: fit-content;
 }
 
 nav a 
 {
 float: left;
-font-size: 16px;
+font-size: 1.5rem;
 color: black;
 text-align: center;
-padding: 14px 16px;
+padding: 16px 16px;
 text-decoration: none;
 }
 
@@ -96,16 +102,22 @@ h2
 text-align: center;
 }
 
+#content
+{
+grid-column: 1 / 4;
+grid-row: 3 / 4;
+}
+
 #footer
 {
 background-color: #4CAF50;
-height: 10em;
-margin-top: 1em;
+
+grid-column: 1 / 4;
+grid-row: 4 / 5;
 }
 
 #footer div
 {
-float: left;
 width: 50%;
 padding: 10px;
 }
@@ -168,7 +180,7 @@ color: white;
 {
     img 
     {
-    height: 8vh;
+    height: 7.5vh;
     width: auto;
     }
 
@@ -210,15 +222,13 @@ color: white;
 {
     img 
     {
-    height: 12vh;
+    height: 11vh;
     width: auto;
     }
 
     nav 
     {
-    font-size: 1.5rem;
     background-color: gray;
-    border-top: 2px solid darkgray;
     display: block;
     }
 
@@ -226,6 +236,29 @@ color: white;
     {
     display: flex;
     justify-content: flex-end;
+    }
+
+    nav ul li a
+    {
+    font-size: 1.25rem;
+    }
+
+    label
+    {
+    font-size: 1.25rem;
+    margin-left: 1rem;
+    }
+
+    select#symptom1, select#symptom2, select#symptom3, select#symptom4, select#sleepHours
+    {
+    font-size: 1.25rem;
+    margin-left: 18.5%;
+    }
+
+    #sendButton 
+    {
+    font-size: 1.25rem;
+    margin-left: 33%;
     }
 
     header i.fas.fa-bars,
@@ -237,16 +270,20 @@ color: white;
 
 @media (min-width: 769px) and (max-width: 1024px) 
 {
+    header
+    {
+    height: 28vh;
+    }
+
     img 
     {
-    height: 120px;
+    height: 11vh;
     width: auto;
     }
+
     nav 
     {
-    font-size: 1.5rem;
     background-color: gray;
-    border-top: 2px solid darkgray;
     display: block;
     }
 
@@ -254,6 +291,29 @@ color: white;
     {
     display: flex;
     justify-content: flex-end;
+    }
+
+    nav ul li a
+    {
+    font-size: 2rem;
+    }
+
+    #sympForm label
+    {
+    width: 10rem;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    }
+
+    select#symptom1, select#symptom2, select#symptom3, select#symptom4, select#sleepHours
+    {
+    font-size: 1.5rem;
+    margin-left: 17%;
+    }
+
+    #sendButton 
+    {
+    margin-left: 37%;
     }
 
     header i.fas.fa-bars,

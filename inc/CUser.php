@@ -380,7 +380,7 @@ class CUser
 
             <label for="symptom1">Symtom 1:</label>
             <select id="symptom1" name="symptom1">
-                <option value="1">Snuva/nästäppa</option>
+                <option value="1">Snuva/ Nästäppa</option>
                 <option value="2">Bröstmsmärta</option>
                 <option value="3">Trötthet</option>
 
@@ -396,7 +396,7 @@ class CUser
 
 			<label for="symptom3">Symtom 3:</label>
             <select id="symptom3" name="symptom3">
-				<option value="1">Illamående/Yrsel</option>
+				<option value="1">Illamående/ Yrsel</option>
                 <option value="2">Feber</option>
                 <option value="3">Ont i halsen</option>
 
